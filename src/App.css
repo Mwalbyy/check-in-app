@@ -1,0 +1,41 @@
+.calendarContainer {
+    width: auto;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    font-family: sans-serif;
+  }
+  
+  .navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .button {
+    cursor: pointer;
+  }
+  
+  .monthLabel {
+    margin: 0;
+  }
+  
+  .weekRow {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .weekDay {
+    flex: 1;
+    font-weight: bold;
+    padding: 4px 0;
+  }
+  
+  .dayCell {
+    flex: 1;
+    padding: 32px 0;
+    border: 2px solid #eee;
+  }
+  
