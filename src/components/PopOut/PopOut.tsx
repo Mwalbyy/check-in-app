@@ -1,20 +1,21 @@
-import React, {useState} from 'react'
+// src/components/PopOut/PopOut.tsx
+import React from 'react';
 import './PopOut.css';
+import { format } from 'date-fns';
 
-export const PopOut = () => {
-    const [isOpen, setOpen] = useState<Boolean>(false);
-    
-  return (
-    <>
-    <button 
-    onClick={() =>{setOpen(true)}}
-    >Click to show</button>
-    <div className={isOpen ? "showPop" : "hidePop"}>HIDDEN OR SHOWING
-    <button 
-    onClick={() =>{setOpen(false)}}
-    >Click to Hide</button>
-    </div>
-    </>
-  )
+interface PopOutProps {
+  selectedDay: Date;
+  onClose: () => void;
 }
-export{}
+
+export const PopOut: React.FC<PopOutProps> = ({ selectedDay, onClose }) => {
+  return (
+    <div className="popOutOverlay">
+      <div className="popOutContent">
+        <h2>{format(selectedDay, 'EEEE, MMMM d, yyyy')}</h2>
+        <p>This is a pop out for the day.</p>
+        <button onClick={onClose}>Close</button>
+      </div>
+    </div>
+  );
+};

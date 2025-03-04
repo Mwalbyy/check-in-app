@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { PopOut } from '../PopOut/PopOut';
 import './Calendar.css';
 import {
   startOfMonth,
@@ -13,7 +14,9 @@ import {
 export const Calendar = () => {
   //State var created to define current month with the new Date function
   const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
-
+  //State var for popOut componenet
+  const [selectedDay, setSelectedDay] = useState<Date | null>(null);
+ 
   // Calculate the start/end of the month using date-fn, made into var's to make it easier to read.
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
@@ -52,6 +55,8 @@ export const Calendar = () => {
 
   const calendarRows = generateDatesForCalendar();
 
+  
+
   return (
     <div className="calendarContainer">
       <div className="navBar">
@@ -87,6 +92,7 @@ export const Calendar = () => {
                   color: dayIsCurrentMonth ? 'black' : '#ccc',
                   backgroundColor: dayIsToday ? '#ffe5b4' : 'transparent'
                 }}
+                onClick={() => setSelectedDay(dayItem)}
               >
                 {formattedDay}
               </div>
@@ -94,6 +100,12 @@ export const Calendar = () => {
           })}
         </div>
       ))}
+      {selectedDay && (
+        <PopOut
+          selectedDay={selectedDay}
+          onClose={() => setSelectedDay(null)}
+        />
+      )}
     </div>
   );
 
